@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Students from './Students/Students'
+import AllStudents from './Students/AllStudents'
+import { Provider } from 'react-redux'
+import store from './store/Store'
+import FormWrapper from './form/FormWrapper'
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Students />}>
+            <Route path='/AllStudents' element={<AllStudents />} />
+            <Route path='/FormWrapper' element={<FormWrapper />} />
+          </Route>
+        </Routes>
+      </Router>
+      </Provider>
+    </>
+  )
 }
 
-export default App;
+export default App
